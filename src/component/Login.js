@@ -53,8 +53,8 @@ const Login = () => {
                     navigate("/homepage");
                     console.log(res);
                     dispatch({ type: actions.SET_USER, user: res.data });
-                    getRecipes();
-                    getBays(res.data.Id);
+                    // getRecipes();
+                    // getBays(res.data.Id);
                     getCategories();
                 } else {
                     console.error("Error:", res.status);

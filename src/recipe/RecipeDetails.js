@@ -23,7 +23,7 @@ const RecipeDetails = () => {
                     
                     axios.post(`http://localhost:8080/api/bay`, { Name: i.Name, UserId: user.Id, Count: i.Count }).then((x) => {
                     dispatch({ type: actions.ADD_TO_SHPLST, prod: x.data })
-                }).catch((error) => console.error(error))
+                }).catch((error) => console.log(error))
           
              }}>
                     add to shopping list
@@ -31,12 +31,12 @@ const RecipeDetails = () => {
                 </button>
                 </li>
           )) }</ul>
-          <h3>Instructions</h3><ul>
+          <h3>Instructions</h3><ol>
           {recipe?.Instructions?.map((i)=>(
                 <li>
                     {i}
                 </li>
-          )) }</ul>
+          )) }</ol>
 
         </div>
       );

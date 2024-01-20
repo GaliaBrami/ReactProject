@@ -16,6 +16,7 @@ const RecipeList = () => {
     const durations = [{ id: 10, value: "10 minutes" }, { id: 15, value: "15 minutes" }, { id: 30, value: "half hour" }, { id: 60, value: "hour" }, { id: 200, value: "2 hours+" }];
     const navigate=useNavigate();
     const dispatch=useDispatch();
+    const r=useSelector(x=>x.recipes)
     // setRecipes(useSelector(state => state.recipes));
     useEffect(() => {
         axios.get("http://localhost:8080/api/recipe")
@@ -24,7 +25,7 @@ const RecipeList = () => {
                 setFilteredRecipes(r.data);
             })
             .catch(err => console.log(err))
-    }, [])
+    }, [r])
     useEffect(() => {
         axios.get("http://localhost:8080/api/category")
             .then(x => {

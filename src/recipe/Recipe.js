@@ -36,7 +36,7 @@ const Recipe = ({ recipe }) => {
             </button>
             <button class="ui button" onClick={() => {
             axios.post(`http://localhost:8080/api/recipe/delete/${recipe.Id}`).then((res)=>{
-                dispatch({ type: actions.DELETE_RECIPE, id: recipe.Id })
+                dispatch({ type: actions.DELETE_RECIPE, id: res.data.Id })
             }).catch(e=>{console.log(e)})
             }}>
                 <i class='trash alternate outline icon'> </i>

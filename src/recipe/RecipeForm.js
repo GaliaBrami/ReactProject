@@ -28,7 +28,7 @@ const schema = yup
     .required()
 
 const AddRecipes = () => {
-    const recipe = useSelector(x=>x.recipe)
+    const recipe = useSelector(x => x.recipe)
     const user = useSelector(state => state.user)
     const categories = useSelector(state => state.categories)
     const dispatch = useDispatch()
@@ -67,10 +67,10 @@ const AddRecipes = () => {
     const onSubmit = (data) => {
 
         data.UserId = user.Id;
-        if (recipe.Id==-1)
-          editRecipe(data);
+        if (recipe.Id != -1)
+            editRecipe(data);
         else
-        addNewRecipe(data)
+            addNewRecipe(data)
     }
     const { fields: fieldsIngrident, append: appendIngrident, remove: removeIngrident, } = useFieldArray({
         control,
@@ -81,14 +81,17 @@ const AddRecipes = () => {
         name: "Instructions",
     });
     return <>
-        <button class="ui button" onClick={()=>{navigate('/addc')}}>add new category</button>
+        <div class="ui clearing segment">
+            <div class="ui right floated button" onClick={() => { navigate('/addc') }}>add new category</div>
+        </div>
+        {/* <button class="ui button" onClick={() => { navigate('/addc') }}></button> */}
+        <h2>Enter Recipe Details:</h2>
 
         <form class="ui form" onSubmit={handleSubmit(onSubmit)}>
             <input {...register("Name")} placeholder="Name" />
             <p>{errors.Name?.message}</p>
             <label>select Category</label>
             <select name="selectCategory" {...register("CategoryId")}>
-                {/* <option value="" >בחר קטגוריה</option> */}
                 {categories?.map((category) => (
                     <option key={category.Id} value={category.Id}>
                         {category.Name}
@@ -100,7 +103,7 @@ const AddRecipes = () => {
             <input {...register("Img")} placeholder="img" />
             <p>{errors.Img?.message}</p>
 
-            <input {...register("Duration")} placeholder="duration" type="number"/>
+            <input {...register("Duration")} placeholder="duration" type="number" />
             <p>{errors.Duration?.message}</p>
 
             <select name="selectLevel" {...register("Difficulty")}>
@@ -113,25 +116,28 @@ const AddRecipes = () => {
             </select>
             <br />
 
-            <input {...register("Description")} placeholder="description"  />
+            <input {...register("Description")} placeholder="description" />
             <p>{errors.Description?.message}</p>
 
             {fieldsIngrident.map((field, index) => (
-                <>
-
-                    <input {...register(`Ingrident.${index}.Name`)} placeholder="name" />
-                    <p>{errors.Ingrident?.[index]?.a?.message}</p>
-
-                    <input {...register(`Ingrident.${index}.Count`)} placeholder="count" type="number" />
-                    <p>{errors.Ingrident?.[index]?.b?.message}</p>
-
-                    <input {...register(`Ingrident.${index}.Type`)} placeholder="type" />
-                    <p>{errors.Ingrident?.[index]?.c?.message}</p>
-
+                <div class="ui grid">
+                    <div class="four wide column">
+                        <input {...register(`Ingrident.${index}.Name`)} placeholder="name" />
+                        <p>{errors.Ingrident?.[index]?.a?.message}</p>
+                    </div>
+                    <div class="four wide column">
+                        <input {...register(`Ingrident.${index}.Count`)} placeholder="count" type="number" />
+                        <p>{errors.Ingrident?.[index]?.b?.message}</p>
+                    </div>
+                    <div class="four wide column">
+                        <input {...register(`Ingrident.${index}.Type`)} placeholder="type" />
+                        <p>{errors.Ingrident?.[index]?.c?.message}</p>
+                    
+                    </div><div class="four wide column">
                     <button class="ui button" onClick={() => removeIngrident(index)}> delete</button>
-                    <hr />
+                    </div><hr />
 
-                </>
+                </div>
             ))}
             <button class="ui button" onClick={() => appendIngrident({})}> add Ingrident</button><br /><br />
             {fieldsInstructions.map((field, index) => (
@@ -146,7 +152,7 @@ const AddRecipes = () => {
             ))}
             <button class="ui button" onClick={() => appendInstructions('')}> add Instruction</button>
             <br /><br />
-            <input class="ui button" type="submit" value="send to add"/>
+            <input class="ui button" type="submit" value="send to add" />
         </form>
     </>
 }

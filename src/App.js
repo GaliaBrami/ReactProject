@@ -28,12 +28,7 @@ function App() {
         <Route path="/shopingList" element={<ShopingList/>}/>
         <Route path="/addc" element={<AddCategory/>}/>
 
-        {/* <Route path="/recipesList" element={<RecipeList />}/> */}
-        {/* <Route path="https://localhost:8080/api/recipe/edit" element={}></Route>
-       <Route path="https://localhost:8080/api/category" element={}></Route>
-       <Route path="https://localhost:8080/api/buy/:userid" element={}></Route>
-       <Route path="https://localhost:8080/api/buy/edit" element={}></Route>
-       <Route path="https://localhost:8080/api/buy/delete/:Userid/:Id" element={}></Route> */}
+     
       </Routes>
       </div></div>
     </div>

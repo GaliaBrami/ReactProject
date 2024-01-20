@@ -2,7 +2,6 @@ import * as actions from './action'
 
 const initalseState = {
     user: null,
-    count: 0,
     recipes: [],
     recipe: null,
     shoplist:[],
@@ -20,12 +19,17 @@ const reducer = (state = initalseState, action) => {
         case actions.ADD_RECIPE:
             const recipes = [...state.recipes];
             recipes.push(action.recipe);
-            // actions.addRecipe();
             return { ...state, recipes }
             case actions.ADD_TO_SHPLST:{
-                const shplist = [...state.shoplist];
-                shplist.push(action.prod);
-                return { ...state, shplist }
+                const shoplist = [...state.shoplist];
+                shoplist.push(action.prod);
+                return { ...state, shoplist }
+            }
+            case actions.UPDATE_TO_SHPLST: {
+                const shoplist = [...state.shoplist];
+                const findIndex = shoplist.findIndex(x => x.Id === action.prod.Id);
+                shoplist[findIndex] = action.prod;
+                return { ...state, shoplist }
             }
             case actions.ADD_CATEGORY:{
                 const categories = [...state.categories];
@@ -39,12 +43,12 @@ const reducer = (state = initalseState, action) => {
             return { ...state, recipes }
         }
         case actions.DELETE_RECIPE: {
-            const recipes = state.recipes.filter(x => x.id !== action.id);
+            const recipes = state.recipes.filter(x => x.Id !== action.id);
             return { ...state, recipes }
         }
         case actions.DEL_TO_SHPLST: {
-            const s = state.shoplist.filter(x => x.id !== action.id);
-            return { ...state, s }
+            const shoplist = state.shoplist.filter(x => x.Id !== action.id);
+            return { ...state, shoplist }
         }
         case actions.SET_CHOSEN:
             return { ...state, recipe: action.recipe }

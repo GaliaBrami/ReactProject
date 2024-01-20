@@ -43,9 +43,9 @@ const AddCategory = () => {
     })
     const dispatch = useDispatch();
     
-    const nav = () => {
-        navigate("/recipes")
-    }
+    // const nav = () => {
+    //     navigate("/recipes")
+    // }
     return <>
         <form class=" six wide column" onSubmit={handleSubmit(addCategory)}>
             <div class="ui card">

@@ -3,6 +3,8 @@ import {  useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router";
 import Recipe from './Recipe';
 import * as actions from '../store/action';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 // import { Link } from 'react-router-dom';
 // import * as actions from '../store/action';
@@ -17,6 +19,15 @@ const MyRecipes = () => {
     // const dispatch = useDispatch();
     const user = useSelector(state => state.user);
     const recipes = useSelector(state => state.recipes);
+    const [r,seR]=useState([]);
+    // setRecipes(useSelector(state => state.recipes));
+    useEffect(() => {
+        axios.get("http://localhost:8080/api/recipe")
+            .then(x => {
+                seR(x.data);
+            })
+            .catch(err => console.log(err))
+    }, [recipes])
 
     return (<>
         <button class="ui button" onClick={() => {
@@ -29,7 +40,7 @@ const MyRecipes = () => {
         }
         }>Add new recipe</button>
         <div class="ui link cards">
-            {recipes?.map((recipe) => (
+            {r?.map((recipe) => (
                 (user && recipe.UserId === user.Id) ?
                     <>
                         <Recipe key={recipe.Id} recipe={recipe} />

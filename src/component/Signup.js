@@ -2,19 +2,24 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { addNewUser } from "../store/user";
-import { Link } from 'react-router-dom';
+// import { addNewUser } from "../store/user";
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import * as actions from '../store/action';
+
 
 const schema = yup.object({
   Username: yup.string().required("This field is required"),
-  Password: yup.string().required("This field is required").min(4,"This field must be 4 charcters or more"),
+  Password: yup.string().required("This field is required").min(4, "This field must be 4 charcters or more"),
   Name: yup.string().required("This field is required"),
-  Phone: yup.string().required("This field is required").matches(/^[0-9]{10}$/,"The requested format must be adjusted"),
+  Phone: yup.string().required("This field is required").matches(/^[0-9]{10}$/, "The requested format must be adjusted"),
   Email: yup.string().required("This field is required").email("The requested format must be adjusted"),
   Tz: yup.string().required("This field is required")
 }).required();
 
 const Signup = () => {
+  const [error,setError]=useState('');
   const {
     register,
     handleSubmit,
@@ -22,7 +27,8 @@ const Signup = () => {
   } = useForm({
     resolver: yupResolver(schema),
   })
-  // const navig = useNavigate();
+  const navig = useNavigate();
+  const dispatch = useDispatch();
   const submit = (data) => {
     const user = {
       Username: data.Username,
@@ -33,9 +39,24 @@ const Signup = () => {
       Tz: data.Tz
     }
     console.log("hgfhgdgf");
-    addNewUser(user);
+    // const res = addNewUser(user);
+    axios.post("http://localhost:8080/api/user/sighin", data)
+      .then(x => {
+        console.log(x.data)
+        setError('');
+        dispatch({ type: actions.SET_USER, user: x.data });
+
+      })
+      .catch(err => {
+        setError(err.response.data);
+        console.log(err)})//.finally()
+   
+
+
   }
   return (<>
+  {error!=""?
+  <div class="ui red message">{error}</div>:null}
     <form class="ui form" onSubmit={handleSubmit(submit)}>
       <div>
         <label>user name:</label>
