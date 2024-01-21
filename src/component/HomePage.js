@@ -1,10 +1,11 @@
-const HomePage = () => {
 
+const HomePage = () => {
+  const hpImage=process.env.PUBLIC_URL+'/hp.jpg';
   return (<>
     <div class="ui segment">
       <div class="ui two column very relaxed grid">
         <div class="column">
-          <img class="ui fluid image" src="/public/hp.jpg" alt="Welcome Image" />
+          <img class="ui fluid image" src={hpImage} alt="Welcome Image" />
         </div>
         <div class="column">
           <h1>welcome to my recipes website</h1>
@@ -14,7 +15,6 @@ const HomePage = () => {
         </div>
       </div>
       <div class="ui vertical divider">
-        {/* and */}
       </div>
     </div>
 

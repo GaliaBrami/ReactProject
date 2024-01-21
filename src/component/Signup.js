@@ -2,7 +2,6 @@ import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-// import { addNewUser } from "../store/user";
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 import axios from "axios";
@@ -38,11 +37,9 @@ const Signup = () => {
       Email: data.Email,
       Tz: data.Tz
     }
-    console.log("hgfhgdgf");
     // const res = addNewUser(user);
     axios.post("http://localhost:8080/api/user/sighin", data)
       .then(x => {
-        console.log(x.data)
         setError('');
         dispatch({ type: actions.SET_USER, user: x.data });
 

@@ -9,7 +9,6 @@ const Recipe = ({ recipe }) => {
     const navigate = useNavigate();
     const user = useSelector(state => state.user);
     return (<div class="card recipe" key={recipe?.Id} >
-        {/* horizontal */}
         <img class="ui medium image" src={recipe?.Img}></img>
         <div>
             {recipe?.Name}
@@ -19,7 +18,6 @@ const Recipe = ({ recipe }) => {
         </div>
         <button class="ui button" onClick={() => {
             // addNewRecipe();
-            //console.log(recipe)
             dispatch({ type: actions.SET_CHOSEN, recipe: recipe });
             navigate("/recipedetails");
             

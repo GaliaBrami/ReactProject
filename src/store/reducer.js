@@ -54,10 +54,7 @@ const reducer = (state = initalseState, action) => {
             return { ...state, recipe: action.recipe }
         case actions.SET_USER:
             return { ...state, user: action.user }
-        // case actions.SET_MASS:
-        //     return { ...state, mass: action.data }
-        // case actions.RELOAD:
-        //     return { ...state, reloed: true }
+        
         default: return { ...state }
     }
 }

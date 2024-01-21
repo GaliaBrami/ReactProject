@@ -45,7 +45,6 @@ const AddRecipes = () => {
         values: recipe,
     })
     const addNewRecipe = (data) => {
-        // console.log("addrecipe", data)
         axios.post("http://localhost:8080/api/recipe", data)
             .then(x => {
                 dispatch({ type: actionType.ADD_RECIPE, recipe: x.data })
@@ -55,7 +54,6 @@ const AddRecipes = () => {
             .catch(err => console.log(err))
     }
     const editRecipe = (data) => {
-        console.log("addrecipe", data)
         axios.post("http://localhost:8080/api/recipe/edit", data)
             .then(x => {
                 dispatch({ type: actionType.EDIT_RECIPE, recipe: x.data })
@@ -107,7 +105,6 @@ const AddRecipes = () => {
             <p>{errors.Duration?.message}</p>
 
             <select name="selectLevel" {...register("Difficulty")}>
-                {/* onChange={(e) => setLevel(e.target.value) */}
                 {difficulties?.map((d) => (
                     <option key={d.id} value={d.id}>
                         {d.value}

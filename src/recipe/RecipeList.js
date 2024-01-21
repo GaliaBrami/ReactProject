@@ -17,7 +17,6 @@ const RecipeList = () => {
     const navigate=useNavigate();
     const dispatch=useDispatch();
     const r=useSelector(x=>x.recipes)
-    // setRecipes(useSelector(state => state.recipes));
     useEffect(() => {
         axios.get("http://localhost:8080/api/recipe")
             .then(r => {

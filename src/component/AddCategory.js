@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-// import { Icon, Form, Input } from 'semantic-ui-react'
 import axios from 'axios';
 import { useDispatch, useSelector } from "react-redux";
 import * as actions from "../store/action";
-// import Header from '../Header';
 import { useNavigate } from 'react-router-dom';
 const AddCategory = () => {
     const categories = useSelector(x => x.categories);
@@ -13,15 +11,12 @@ const AddCategory = () => {
     const navigate = useNavigate();
 
     const addCategory = (data) => {
-        console.log(categories);
-        console.log(data);
     
             axios.post("http://localhost:8080/api/category", {
                 Name: data.category
             })
                 .then(x => {
                     dispatch({ type: actions.ADD_CATEGORY, c: x.data })
-                    console.log(x.data);
                     navigate('/recipeform')
                 }
                 )
@@ -43,9 +38,6 @@ const AddCategory = () => {
     })
     const dispatch = useDispatch();
     
-    // const nav = () => {
-    //     navigate("/recipes")
-    // }
     return <>
         <form class=" six wide column" onSubmit={handleSubmit(addCategory)}>
             <div class="ui card">

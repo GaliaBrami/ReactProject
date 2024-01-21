@@ -7,7 +7,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as actions from '../store/action';
-// import { useSelector } from 'react-redux';
 
 const schema = yup
     .object({
@@ -31,7 +30,6 @@ const Login = () => {
         axios.get(`http://localhost:8080/api/bay/${id}`)
             .then(spl => {
                 dispatch({ type: actions.SET_SHP_LST, shopinglist: spl.data });
-                // console.log(spl);
     
             })
             .catch(err => console.log(err))
@@ -39,19 +37,16 @@ const Login = () => {
      const getCategories = () => {
        return axios.get("http://localhost:8080/api/category")
                 .then(x => {
-                    console.log(x.data)
                 dispatch({ type: actions.SET_CATEGORIES,ctgrs: x.data });
     
                 })
                 .catch(err => console.log(err))
     }
-    // const user = useSelector(state => state.user);
     const submit = (data) => {
         axios.post("http://localhost:8080/api/user/login", { Username: data.userName, Password: data.password })
             .then((res) => {
                 if (res.status >= 200 && res.status < 300) {
                     navigate("/homepage");
-                    console.log(res);
                     dispatch({ type: actions.SET_USER, user: res.data });
                     // getRecipes();
                     // getBays(res.data.Id);
