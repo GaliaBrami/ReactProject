@@ -4,11 +4,11 @@ import Signup from './component/Signup';
 import { Route, Routes } from 'react-router-dom';
 import Header from './component/Header';
 import HomePage from './component/HomePage';
-import MyRecipes from './recipe/MyRecipes';
+import MyRecipes from './component/recipe/MyRecipes';
 import ShopingList from './component/ShopingList';
-import RecipesList from './recipe/RecipeList';
-import RecipeForm from './recipe/RecipeForm';
-import RecipeDetails from './recipe/RecipeDetails';
+import RecipesList from './component/recipe/RecipeList';
+import RecipeForm from './component/recipe/RecipeForm';
+import RecipeDetails from './component/recipe/RecipeDetails';
 import AddCategory from './component/AddCategory';
 
 function App() {
@@ -27,8 +27,6 @@ function App() {
         <Route path="/recipes" element={<RecipesList/>}/>
         <Route path="/shopingList" element={<ShopingList/>}/>
         <Route path="/addc" element={<AddCategory/>}/>
-
-     
       </Routes>
       </div></div>
     </div>

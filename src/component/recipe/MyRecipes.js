@@ -2,7 +2,7 @@
 import {  useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router";
 import Recipe from './Recipe';
-import * as actions from '../store/action';
+import * as actions from '../../store/action';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 

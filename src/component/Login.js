@@ -65,7 +65,7 @@ const Login = () => {
             <div class="field">
                 <label>User Name</label>
                 <div class="ui left icon input">
-                <input type="text" value="AAA" placeholder='user name' {...register("userName")} />
+                <input type="text"  placeholder='user name' {...register("userName")} />
                 <i class="user icon"></i>
                 </div>
                 <p>{errors.userName?.message}</p>
@@ -74,7 +74,7 @@ const Login = () => {
                 
                 <label>Password</label>
                 <div class="ui left icon input">
-                <input type="password" value="1234" placeholder='password' {...register("password")} />
+                <input type="password"  placeholder='password' {...register("password")} />
                 <i class="lock icon"></i>
                 </div>
                 <p>{errors.password?.message}</p>

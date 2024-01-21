@@ -4,7 +4,7 @@ import * as yup from "yup"
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import * as actionType from "../store/action"
+import * as actionType from "../../store/action"
 
 const difficulties = [{ id: 1, value: "easy" }, { id: 2, value: "medium" }, { id: 3, value: "hard" }];
 

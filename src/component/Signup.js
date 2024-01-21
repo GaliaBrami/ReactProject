@@ -28,6 +28,14 @@ const Signup = () => {
   })
   const navig = useNavigate();
   const dispatch = useDispatch();
+  const getCategories = () => {
+    return axios.get("http://localhost:8080/api/category")
+             .then(x => {
+             dispatch({ type: actions.SET_CATEGORIES,ctgrs: x.data });
+ 
+             })
+             .catch(err => console.log(err))
+ }
   const submit = (data) => {
     const user = {
       Username: data.Username,
@@ -42,7 +50,7 @@ const Signup = () => {
       .then(x => {
         setError('');
         dispatch({ type: actions.SET_USER, user: x.data });
-
+        getCategories();
       })
       .catch(err => {
         setError(err.response.data);

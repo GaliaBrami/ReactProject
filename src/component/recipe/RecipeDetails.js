@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from '../store/action.js'
+import * as actions from '../../store/action.js'
 import axios from "axios";
 
 

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from '../store/action';
+import * as actions from '../../store/action';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -9,7 +9,7 @@ const Recipe = ({ recipe }) => {
     const navigate = useNavigate();
     const user = useSelector(state => state.user);
     return (<div class="card recipe" key={recipe?.Id} >
-        <img class="ui medium image" src={recipe?.Img}></img>
+        <img class="ui medium image" src={recipe?.Img} alt="recipe img"></img>
         <div>
             {recipe?.Name}
         </div>
@@ -24,7 +24,7 @@ const Recipe = ({ recipe }) => {
         }}>
             <i class='angle down icon'></i>
         </button>
-        {(user && recipe?.UserId == user.Id) ? <>
+        {(user && recipe?.UserId === user.Id) ? <>
         <div>
             <button class="ui button" onClick={()=>{
                 dispatch({type:actions.SET_CHOSEN,recipe:recipe});
